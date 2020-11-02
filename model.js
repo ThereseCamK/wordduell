@@ -1,4 +1,5 @@
 const Model = {
+    
 	CurrentUser: {
 		UserName: "",
 		UserPassword: "",
