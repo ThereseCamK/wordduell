@@ -5,7 +5,7 @@ const model = {
     },
     current: {
         userName: 'per',
-        page: 'home',
+        page: 'main',
     },
 
     pages: { // omfatter også det jeg ofte kaller inputs
@@ -18,9 +18,11 @@ const model = {
             word: '',
             wordLengths: [2, 3, 4, 5, 6, 7]
         },
-        game: {
+        game:
+        {
             opponentIsBot: true,
-            correctWord: {
+			correctWord:
+			{
                 player: 'VASKE',
                 opponent: 'ABCDE',
             },
@@ -34,6 +36,3 @@ const model = {
         },
     },
 }
-
-
-//model.pages.game.correctword.player
