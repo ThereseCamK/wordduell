@@ -5,7 +5,7 @@ const model = {
     },
     current: {
         userName: 'per',
-        page: 'home',
+        page: 'game',
     },
 
     pages: { // omfatter også det jeg ofte kaller inputs
@@ -24,6 +24,7 @@ const model = {
                 player: 'VASKE',
                 opponent: 'ABCDE',
             },
+            guessInput: '',
             wordLength: 5,
             guesses: [{
                     isPlayer: true,
@@ -33,13 +34,13 @@ const model = {
                 },
                 {
                     isPlayer: true,
-                    score: 2,
+                    score: 1,
                     text: 'VASKE',
                     marks: [-1, 0, 1, 0, 0],
                 },
                 {
                     isPlayer: false,
-                    score: 2,
+                    score: 0,
                     text: 'BUKSE',
                     marks: [-1, 0, 1, 0, 0],
                 },

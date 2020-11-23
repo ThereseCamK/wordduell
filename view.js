@@ -16,18 +16,25 @@ const setupPage = `
     <button onclick="model.current.page = 'game'; updateView();">Start</button>
 `;
 
-const gamePage = `
+function gamePage() { return `
     
     <div>${model.current.userName} VS BOT</div><br>
     <div>${model.pages.game.correctWord.player}</div>
     <div style="display:flex;">
         <div>
-        <table>${gameTable('bot')}</table>
-        <table>${gameTable('player')}</table>
+        <table>${gameTable('bot')}</table> 
         </div>
-        <div></div>
+        <hr style="width: 1px; height: 230px; margin:  3px;">
+        <div>
+            <table>${gameTable('player')}</table>
+        </div>   
     </div>
-`;
+    <input type="text" placeholder="Gjett her" oninput="model.pages.game.guessInput = this.value"/> 
+    <button type="button" onclick="pushWord('player')"> Gjett </button>
+`; }
+
+const endPage = `
+<div>${checkWin()}</div>`
 
 function updateView() {
     document.getElementById('app').innerHTML = drawPage();
@@ -39,7 +46,9 @@ function drawPage() {
     } else if (model.current.page == 'setup') {
         return setupPage;
     } else if (model.current.page == 'game') {
-        return gamePage;
+        return gamePage();
+    } else if (model.current.page == 'end') {
+        return endPage;
     }
 }
 
@@ -52,10 +61,9 @@ function wordLengthsOptions() {
 }
 
 function gameTable(player) { // Kanskje lettere bruker forståelse om man tar imot parameter height og width.
-
-    // Kan tas imot som parameter
+    console.log('kjørt')
+        // Kan tas imot som parameter
     let wordLength = model.pages.game.wordLength
-    let wordTableHeight = 9
 
     let tableHTML = ''
 
@@ -66,6 +74,7 @@ function gameTable(player) { // Kanskje lettere bruker forståelse om man tar im
     let columnEnd = `</td>`;
 
     let guesses = filterGuesses(player)
+    let wordTableHeight = guesses.length;
 
     for (let r = 0; r < wordTableHeight; r++) {
 
@@ -78,7 +87,7 @@ function gameTable(player) { // Kanskje lettere bruker forståelse om man tar im
             tableHTML += columnEnd
         }
 
-        tableHTML += rowEnd
+        tableHTML += `<td>${guesses[r].score}</td>` + rowEnd
 
     }
 
